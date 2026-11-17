@@ -1,0 +1,7 @@
+__pycache__/
+.pytest_cache/
+.venv/
+*.parquet
+!artifacts/ranking.parquet
+!artifacts/history.parquet
+.DS_Store

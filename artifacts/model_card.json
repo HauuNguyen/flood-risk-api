@@ -1,0 +1,74 @@
+{
+  "model_version": "1.0.0",
+  "trained_at": "2026-11-12T07:59:19+00:00",
+  "task": "One-year-ahead ranking of Tambon flood-proneness (label: flooded share of area > 5%)",
+  "target_year": 2025,
+  "data_years": [
+    2011,
+    2024
+  ],
+  "n_tambons": 6363,
+  "inputs": {
+    "logit_hist": "logit of the smoothed share of earlier years in which the Tambon was flooded",
+    "y_lag1": "1 if the Tambon was flooded in the previous year, else 0"
+  },
+  "training_window": {
+    "fit_years": [
+      2012,
+      2022
+    ],
+    "calibration_years": [
+      2023,
+      2024
+    ]
+  },
+  "parameters": {
+    "feats": [
+      "logit_hist",
+      "y_lag1"
+    ],
+    "mean": [
+      -0.9085727233493037,
+      0.28494277999228496
+    ],
+    "scale": [
+      0.8142509153668912,
+      0.4513871864846777
+    ],
+    "coef": [
+      0.209611825088194,
+      0.18833242774246559
+    ],
+    "intercept": -1.0546230087603645,
+    "platt_coef": 2.6215914868342813,
+    "platt_intercept": 1.6707762156830943
+  },
+  "evaluation": {
+    "protocol": "train 2012-2019, calibrate 2020-2022, test 2023-2024",
+    "test_years": [
+      2023,
+      2024
+    ],
+    "n_test_rows": 12726,
+    "within_year_auc": {
+      "core_model": 0.7647,
+      "climatology": 0.7504
+    },
+    "pooled_auc": {
+      "core_model": 0.7558,
+      "climatology": 0.7444
+    }
+  },
+  "tiers": [
+    "Low (bottom 50%)",
+    "Moderate",
+    "High (top 20%)",
+    "Very High (top 5%)"
+  ],
+  "disclaimer": "Ranking of long-run flood-proneness for the target year. It is NOT a forecast of how many Tambons will flood or of a specific flood event: the national year-to-year flood level is not predictable from history.",
+  "known_limitations": [
+    "Skill over climatology is small and within year-to-year noise.",
+    "Scores are approximate probabilities; use them to rank.",
+    "Flood labels come from an annual satellite-derived product (AIT-GIC)."
+  ]
+}

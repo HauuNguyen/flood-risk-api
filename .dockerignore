@@ -1,0 +1,11 @@
+tests
+scripts
+*.ipynb
+*.parquet
+!artifacts/*.parquet
+__pycache__
+.pytest_cache
+.git
+.venv
+.DS_Store
+ 
